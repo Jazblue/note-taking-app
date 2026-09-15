@@ -6,7 +6,9 @@ from functools import wraps
 import re
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your-secret-key-here'
+# SECURITY WARNING: Set SECRET_KEY via environment variable in production
+# Example: export SECRET_KEY="your-secret-key-here"
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
 app.config['DATABASE'] = os.path.join(app.instance_path, 'notes.db')
 
 # Ensure instance directory exists
